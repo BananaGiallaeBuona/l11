@@ -1,7 +1,7 @@
 plugins {
     java
     application
-    id("org.danilopianini.gradle-java-qa") version "1.77.0"
+    id("org.danilopianini.gradle-java-qa") version "1.88.0"
 }
 
 repositories {
