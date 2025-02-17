@@ -46,7 +46,7 @@ public final class MultiThreadedListSumClassic implements SumList {
             try {
                 w.join();
                 sum += w.getResult();
-            } catch (final InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new IllegalStateException(e);
             }
         }
@@ -81,7 +81,7 @@ public final class MultiThreadedListSumClassic implements SumList {
 
         @Override
         @SuppressWarnings("PMD.SystemPrintln")
-        public synchronized void run() {
+        public void run() {
             System.out.println("Working from position " + startpos + " to position " + (startpos + nelem - 1));
             for (int i = startpos; i < list.size() && i < startpos + nelem; i++) {
                 this.res += this.list.get(i);
@@ -93,7 +93,7 @@ public final class MultiThreadedListSumClassic implements SumList {
          *
          * @return the sum of every element in the array
          */
-        public synchronized long getResult() {
+        public long getResult() {
             return this.res;
         }
 
