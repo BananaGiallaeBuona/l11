@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 public interface MusicGroup {
 
     /**
-     *
      * @param albumName
      *            album name
      * @param year

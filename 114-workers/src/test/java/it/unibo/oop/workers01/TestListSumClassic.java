@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * TestMatrix for worker 1.
- *
  */
 @SuppressWarnings("PMD.SystemPrintln")
 class TestListSumClassic {
@@ -17,7 +15,8 @@ class TestListSumClassic {
     /**
      * SumList and its multithreaded implementation are given as reference
      * implementation of a software that sums the elements of a list.
-     * 
+     *
+     * <p>
      * Note that it is often impossible to split the load in an exact equal
      * manner - that's not an issue normally, however.
      */
@@ -43,7 +42,7 @@ class TestListSumClassic {
          * Prepare time ant test with different number of threads
          */
         long time;
-        for (final int threads: new int[] { 1, 2, 3, 8, 16, 32 }) {
+        for (final int threads: new int[] {1, 2, 3, 8, 16, 32 }) {
             final SumList sumList = new MultiThreadedListSumClassic(threads);
             time = System.currentTimeMillis();
             assertEquals(sum, sumList.sum(list));

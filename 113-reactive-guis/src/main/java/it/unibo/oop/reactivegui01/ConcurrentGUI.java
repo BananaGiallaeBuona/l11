@@ -1,6 +1,5 @@
 package it.unibo.oop.reactivegui01;
 
-
 import it.unibo.oop.JFrameUtil;
 
 import java.io.Serial;
@@ -45,7 +44,7 @@ public final class ConcurrentGUI extends JFrame {
         /*
          * Register a listener that stops it
          */
-        stop.addActionListener((e) -> agent.stopCounting());
+        stop.addActionListener(e -> agent.stopCounting());
     }
 
     /*
@@ -55,13 +54,13 @@ public final class ConcurrentGUI extends JFrame {
     private final class Agent implements Runnable {
         /*
          * Stop is volatile to ensure visibility. Look at:
-         * 
+         *
          * http://archive.is/9PU5N - Sections 17.3 and 17.4
-         * 
+         *
          * For more details on how to use volatile:
-         * 
+         *
          * http://archive.is/4lsKW
-         * 
+         *
          */
         private volatile boolean stop;
         private int counter;
@@ -70,7 +69,7 @@ public final class ConcurrentGUI extends JFrame {
         public void run() {
             while (!this.stop) {
                 try {
-                    // The EDT doesn't access `counter` anymore, it doesn't need to be volatile 
+                    // The EDT doesn't access `counter` anymore, it doesn't need to be volatile
                     final var nextText = Integer.toString(this.counter);
                     SwingUtilities.invokeAndWait(() -> ConcurrentGUI.this.display.setText(nextText));
                     this.counter++;

@@ -3,9 +3,7 @@ package it.unibo.oop.workers01;
 import java.util.List;
 
 /**
- * 
- * An interface defining a method to sum up the elements of a list.
- *
+ * The sum of all elements in a list of integers.
  */
 public interface SumList {
 

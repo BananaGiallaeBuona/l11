@@ -1,9 +1,7 @@
 package it.unibo.oop.workers02;
 
 /**
- * 
- * An interfaced defining a sum for a matrix.
- *
+ * The operation of summing all values in a matrix.
  */
 public interface SumMatrix {
 

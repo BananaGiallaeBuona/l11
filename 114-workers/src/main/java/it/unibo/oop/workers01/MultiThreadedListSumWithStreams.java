@@ -13,7 +13,6 @@ public final class MultiThreadedListSumWithStreams implements SumList {
     private final int nthread;
 
     /**
-     *
      * @param nthread
      *            no. of thread performing the sum.
      */
@@ -35,7 +34,7 @@ public final class MultiThreadedListSumWithStreams implements SumList {
                 .peek(Thread::start)
                 // Join them
                 .peek(MultiThreadedListSumWithStreams::joinUninterruptibly)
-                 // Get their result and sum
+                // Get their result and sum
                 .mapToLong(Worker::getResult)
                 .sum();
     }

@@ -26,6 +26,7 @@ final class TestMusicGroup {
     private static final String III = "III";
     private static final String II = "II";
     private static final String I = "I";
+    private static final String WHEN_THE_LEVEE_BREAKS = "When the Levee Breaks";
     private MusicGroup lz;
 
     /**
@@ -45,7 +46,7 @@ final class TestMusicGroup {
         lz.addSong("Immigrant Song", Optional.of(III), 2.4);
         lz.addSong("That's the Way", Optional.of(III), 5.4);
         lz.addSong("Black Dog", Optional.of(UNTITLED), 4.9);
-        lz.addSong("When the Levee Breaks", Optional.of(UNTITLED), 7.1);
+        lz.addSong(WHEN_THE_LEVEE_BREAKS, Optional.of(UNTITLED), 7.1);
         lz.addSong("Travelling Riverside Blues", Optional.empty(), 5.2);
     }
 
@@ -76,7 +77,7 @@ final class TestMusicGroup {
             "Ramble On",
             "That's the Way",
             "Travelling Riverside Blues",
-            "When the Levee Breaks",
+                WHEN_THE_LEVEE_BREAKS,
             "Whole Lotta Love"
         );
         final List<String> actual = lz.orderedSongNames().collect(toList());
@@ -122,7 +123,7 @@ final class TestMusicGroup {
      */
     @Test
     void testLongest() {
-        assertEquals("When the Levee Breaks", lz.longestSong().get());
+        assertEquals(WHEN_THE_LEVEE_BREAKS, lz.longestSong().get());
         assertEquals(UNTITLED, lz.longestAlbum().get());
     }
 

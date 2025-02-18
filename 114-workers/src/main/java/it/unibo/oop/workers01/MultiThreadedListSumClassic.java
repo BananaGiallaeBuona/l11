@@ -12,7 +12,6 @@ public final class MultiThreadedListSumClassic implements SumList {
     private final int nthread;
 
     /**
-     *
      * @param nthread
      *            no. of thread performing the sum.
      */
