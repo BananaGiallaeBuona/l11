@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * The sum of all elements in a list of integers.
  */
+@FunctionalInterface
 public interface SumList {
 
     /**
