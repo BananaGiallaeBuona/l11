@@ -15,7 +15,6 @@ import javax.swing.SwingUtilities;
  * This is a first example on how to realize a reactive GUI.
  * This shows an alternative solutions using lambdas
  */
-@SuppressWarnings("PMD.AvoidPrintStackTrace")
 public final class ConcurrentGUI extends JFrame {
 
     @Serial
@@ -79,7 +78,7 @@ public final class ConcurrentGUI extends JFrame {
                      * This is just a stack trace print, in a real program there
                      * should be some logging and decent error reporting
                      */
-                    ex.printStackTrace();
+                    ex.printStackTrace(); // NOPMD: this is just an example
                 }
             }
         }

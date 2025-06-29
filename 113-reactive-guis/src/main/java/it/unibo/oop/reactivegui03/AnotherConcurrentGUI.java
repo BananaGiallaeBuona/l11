@@ -6,7 +6,6 @@ import java.io.Serial;
 /**
  * Third experiment with reactive gui.
  */
-@SuppressWarnings("PMD.AvoidPrintStackTrace")
 public final class AnotherConcurrentGUI extends JFrame {
 
     @Serial
