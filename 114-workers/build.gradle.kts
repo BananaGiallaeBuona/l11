@@ -1,7 +1,7 @@
 plugins {
     java
     application
-    id("org.danilopianini.gradle-java-qa") version "1.127.0"
+    id("org.danilopianini.gradle-java-qa") version "1.128.0"
 }
 
 tasks.javadoc {
