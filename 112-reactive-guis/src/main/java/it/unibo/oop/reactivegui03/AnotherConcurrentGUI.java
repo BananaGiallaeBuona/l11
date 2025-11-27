@@ -1,7 +1,8 @@
 package it.unibo.oop.reactivegui03;
 
-import javax.swing.JFrame;
 import java.io.Serial;
+
+import javax.swing.JFrame;
 
 /**
  * Third experiment with reactive gui.

@@ -33,6 +33,8 @@ public final class Test {
      */
 
     /**
+     * Main method to start the GUI.
+     *
      * @param args
      *            possible args to pass (not used)
      */

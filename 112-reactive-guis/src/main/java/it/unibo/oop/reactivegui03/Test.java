@@ -22,6 +22,8 @@ public final class Test {
      */
 
     /**
+     * Main method to start the GUI.
+     *
      * @param args
      *            unused
      */
