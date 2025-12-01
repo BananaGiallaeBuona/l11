@@ -1,0 +1,28 @@
+# File di build Java e Gradle
+*.class
+*.jar
+*.war
+.gradle/
+build/
+bin/
+
+# File generati dagli IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+*.project
+.classpath
+
+# File di sistema operativi
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+desktop.ini
+# Linux e editor
+*~
+.*.swp
+
+# File dello script di setup (se presente)
+scriptGit.sh
