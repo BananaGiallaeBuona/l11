@@ -8,9 +8,10 @@ import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.io.Serial;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -44,16 +45,20 @@ public final class LambdaFilter extends JFrame {
          * Commands.
          */
         IDENTITY("No modifications", Function.identity()),
-        LOWER("Lower case", txt -> txt.toLowerCase()),
+        LOWER("Lower case", txt -> txt.toLowerCase(Locale.ROOT)),
+        //Locale is preferred to use the local language of the computer in turkish is different
         NCHARS("number of chars", txt -> Long.toString(txt.chars().count())),
         NLINES("number of lines", txt -> Long.toString(txt.lines().count())),
-        SORT("alphabetical order", txt -> Arrays.stream(txt.split("\\s")).sorted().toList().toString()),
-        //in split i add \s for the space there is also // to support multiple lines
-        MODE("mode of every word", txt -> Long.toString(Arrays.stream(txt.split("\\s")).count()));
+        SORT("alphabetical order", txt -> Arrays.stream(txt.split("\\s+")).sorted().toList().toString()),
+        //in split i add \\s for the space there is also + to support more than one space
+        MODE("mode of every word", txt ->
+            Arrays.stream(txt.split("\\s+"))
+                .collect(Collectors.groupingBy(w -> w, Collectors.counting()))
+                .toString()
+        );
 
         private final String commandName;
         private final Function<String, String> fun;
-    
 
         Command(final String name, final Function<String, String> process) {
             commandName = name;
@@ -103,7 +108,7 @@ public final class LambdaFilter extends JFrame {
         setSize(sw / 4, sh / 4);
         setLocationByPlatform(true);
     }
-    
+
     /**
      * @param a unused
      */
