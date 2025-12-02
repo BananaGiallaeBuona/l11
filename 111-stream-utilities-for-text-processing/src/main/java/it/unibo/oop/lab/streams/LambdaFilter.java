@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.io.Serial;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -41,10 +42,16 @@ public final class LambdaFilter extends JFrame {
         /**
          * Commands.
          */
-        IDENTITY("No modifications", Function.identity());
+        IDENTITY("No modifications", Function.identity()),
+        LOWER("Lower case", txt -> txt.toLowerCase()),
+        NCHARS("number of chars", txt -> Long.toString(txt.chars().count())),
+        NLINES("number of lines", txt -> Long.toString(txt.lines().count())),
+        SORT("alphabetical order", txt -> Arrays.stream(txt.split("\\s+")).sorted().toString()),
+        MODE("mode of every word", txt -> Long.toString(Arrays.stream(txt.split("\\s+")).count()));
 
         private final String commandName;
         private final Function<String, String> fun;
+    
 
         Command(final String name, final Function<String, String> process) {
             commandName = name;
@@ -79,6 +86,7 @@ public final class LambdaFilter extends JFrame {
         centralPanel.add(right);
         panel1.add(centralPanel, BorderLayout.CENTER);
         final JButton apply = new JButton("Apply");
+        //here the code handles the convertion
         apply.addActionListener(ev ->
             right.setText(
                 ((Command) Objects.requireNonNull(combo.getSelectedItem()))
@@ -93,7 +101,7 @@ public final class LambdaFilter extends JFrame {
         setSize(sw / 4, sh / 4);
         setLocationByPlatform(true);
     }
-
+    
     /**
      * @param a unused
      */
