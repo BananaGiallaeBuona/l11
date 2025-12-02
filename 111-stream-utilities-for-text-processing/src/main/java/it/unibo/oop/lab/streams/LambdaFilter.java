@@ -10,6 +10,7 @@ import java.io.Serial;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -46,8 +47,9 @@ public final class LambdaFilter extends JFrame {
         LOWER("Lower case", txt -> txt.toLowerCase()),
         NCHARS("number of chars", txt -> Long.toString(txt.chars().count())),
         NLINES("number of lines", txt -> Long.toString(txt.lines().count())),
-        SORT("alphabetical order", txt -> Arrays.stream(txt.split("\\s+")).sorted().toString()),
-        MODE("mode of every word", txt -> Long.toString(Arrays.stream(txt.split("\\s+")).count()));
+        SORT("alphabetical order", txt -> Arrays.stream(txt.split("\\s")).sorted().toList().toString()),
+        //in split i add \s for the space there is also // to support multiple lines
+        MODE("mode of every word", txt -> Long.toString(Arrays.stream(txt.split("\\s")).count()));
 
         private final String commandName;
         private final Function<String, String> fun;
