@@ -75,7 +75,7 @@ public final class ConcurrentGUI extends JFrame {
                     final var nextText = Integer.toString(this.counter);
                     SwingUtilities.invokeAndWait(() -> ConcurrentGUI.this.display.setText(nextText));
                     this.counter++;
-                    Thread.sleep(100);
+                    Thread.sleep(0);
                 } catch (InvocationTargetException | InterruptedException ex) {
                     LOGGER.error(ex.getMessage(), ex);
                 }

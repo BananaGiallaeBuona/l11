@@ -1,5 +1,6 @@
 package it.unibo.oop.lab.streams;
 
+//this code does,'t pass gradlew run, but I think it's cause of the configuration of gradlew run that doesn't find a main
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
