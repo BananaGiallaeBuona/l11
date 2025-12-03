@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import it.unibo.oop.JFrameUtil;
-import it.unibo.oop.reactivegui01.ConcurrentGUI;
 
 /**
  * Third experiment with reactive gui.
@@ -80,36 +79,35 @@ public final class AnotherConcurrentGUI extends JFrame {
          */
         private volatile boolean stop;
         private int counter;
-    private boolean directionUp = true; 
+        private volatile boolean directionUp = true; 
 
         @Override
         public void run() {
             while (!this.stop) {
                 try {
-                    while (this.counter <= 10_000) {
-                        // The EDT doesn't access `counter` anymore, it doesn't need to be volatile
-                        final var nextText = Integer.toString(this.counter);
-                        SwingUtilities.invokeAndWait(() -> AnotherConcurrentGUI.this.display.setText(nextText));
-                        if (directionUp) {
+                    // The EDT doesn't access `counter` anymore, it doesn't need to be volatile
+                    final var nextText = Integer.toString(this.counter);
+                    SwingUtilities.invokeAndWait(() -> AnotherConcurrentGUI.this.display.setText(nextText));
+                    if (directionUp) {
+                        if (this.counter < 10_000){
                             this.counter++;
                         } else {
-                            this.counter--;
+                            this.stopCounting();
                         }
-                        Thread.sleep(1);
+                    } else {
+                        this.counter--;
                     }
-                    final Stopper stopper = new Stopper();
-                    stopper.setAgent(this);
-                    new Thread(stopper).start();
+                    Thread.sleep(1);
                 } catch (InvocationTargetException | InterruptedException ex) {
                     LOGGER.error(ex.getMessage(), ex);
                 }
             }
             /*
-        *an agent that works to stop the program after 10 sec
-        */
-        final Stopper stopper = new Stopper();
-        stopper.setAgent(this);
-        new Thread(stopper).start();
+            *NO MORE USED an agent that works to stop the program after 10 sec
+            final Stopper stopper = new Stopper();
+            stopper.setAgent(this);
+            new Thread(stopper).start();
+            */
         }
 
         /**
@@ -121,16 +119,7 @@ public final class AnotherConcurrentGUI extends JFrame {
         }
     }
 
-    private final class Stopper implements Runnable {
-        private Agent agent;
-        @Override
-        public void run() {
-            this.agent.stopCounting();
-        }
-
-        public void setAgent(Agent agent){
-            this.agent = agent;
-        }
-
-    }
+    /*
+    *i removed the other agent because i reached the goal whith the if
+    */
 }
