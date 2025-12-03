@@ -84,12 +84,13 @@ public final class AnotherConcurrentGUI extends JFrame {
         @Override
         public void run() {
             while (!this.stop) {
+                final int limit = 10_000;
                 try {
                     // The EDT doesn't access `counter` anymore, it doesn't need to be volatile
                     final var nextText = Integer.toString(this.counter);
                     SwingUtilities.invokeAndWait(() -> AnotherConcurrentGUI.this.display.setText(nextText));
                     if (directionUp) {
-                        if (this.counter < 10_000){
+                        if (this.counter < limit) {
                             this.counter++;
                         } else {
                             this.stopCounting();
