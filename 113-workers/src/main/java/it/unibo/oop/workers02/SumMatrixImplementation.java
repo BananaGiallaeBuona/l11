@@ -4,25 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * our goal is to :
- * 1)obtain the number of cells in the matrix
- * 2)divide it for somthing 
+ * our goal is to:
+ * 1)obtain the number of cells in the matrix.
+ * 2)divide it for somthing .
  */
-
-public class SumMatrixImplementation implements SumMatrix {
+public final class SumMatrixImplementation implements SumMatrix {
     private final int nthread;
-    
-    SumMatrixImplementation (int nthread) {
+
+    SumMatrixImplementation(final int nthread) {
         this.nthread = nthread;
     }
 
     @Override
-    public double sum(double[][] matrix) {
+    public double sum(final double[][] matrix) {
         return sum(transformInList(matrix));
     }
 
-    public double sum(List<Double> matrixList){
-        final int size = matrixList.size() % nthread + matrixList.size()/this.nthread;
+    /**
+     * @param matrixList the matrix transformed in list
+     * 
+     * @return a double that represent the sum of every element inside a cell
+     */
+    public double sum(final List<Double> matrixList) {
+        final int size = matrixList.size() % nthread + matrixList.size() / this.nthread;
         double sum = 0;
         /*
          * Build a list of workers
@@ -56,10 +60,10 @@ public class SumMatrixImplementation implements SumMatrix {
         return sum;
     }
 
-    private List<Double> transformInList(double[][] matrix){
-        List<Double> list = new ArrayList<>();
-        for (double[] row : matrix) {
-            for (double val : row) {
+    private List<Double> transformInList(final double[][] matrix) {
+        final List<Double> list = new ArrayList<>();
+        for (final double[] row : matrix) {
+            for (final double val : row) {
                 list.add(val);
             }
         }

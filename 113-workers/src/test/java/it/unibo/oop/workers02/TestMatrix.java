@@ -13,16 +13,16 @@ class TestMatrix {
 
     /*
      * Si fornisce l'interfaccia SumMatrix, con un metodo per calcolare la
-     * somma degli elementi di una matrice.
+     * somma degli elementi di una matrice. DONE
      *
      * Realizzare una classe MultiThreadedSumMatrix, con costrutto che accetta
      * un intero positivo 'n', che implementa tale funzionalità in modo
      * "multi-threaded", con 'n' Worker che si dividano il compito in modo
      * sufficientemente omogeneo -- non è necessario che l'ammontare dei compiti
-     * dei singoli Worker siano esattamente equivalenti.
+     * dei singoli Worker siano esattamente equivalenti. DONE
      *
      * Si faccia stampare (su System.out) ad ogni Worker una indicazione di che
-     * porzione del lavoro svolge.
+     * porzione del lavoro svolge. DONE
      *
      * All'esecuzione del test qui sotto, le chiamate dovranno dare lo stesso
      * output, ad eccezione ovviamente dei tempi.
@@ -49,13 +49,7 @@ class TestMatrix {
         long time;
         for (final int threads : new int[] {1, 2, 3, 8, 16, 32, 100}) {
             // Replace with your implementation
-            final SumMatrix sumList = // new MultiThreadedSumMatrix(threads);
-                new SumMatrix() {
-                    @Override
-                    public double sum(final double[][] matrix) {
-                        return 0;
-                    }
-                };
+            final SumMatrix sumList = new SumMatrixImplementation(threads);
             time = System.nanoTime();
             assertEquals(sum, sumList.sum(matrix), EXPECTED_DELTA);
             time = System.nanoTime() - time;
